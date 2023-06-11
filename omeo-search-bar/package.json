@@ -7,6 +7,8 @@
     "@emotion/styled": "^11.11.0",
     "@mui/joy": "^5.0.0-alpha.83",
     "@mui/material": "^5.13.4",
+    "@mui/x-date-pickers": "^6.7.0",
+    "@mui/x-date-pickers-pro": "^6.7.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,7 +16,11 @@
     "@types/node": "^16.18.35",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
+    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.8",
     "react": "^18.2.0",
+    "react-date-range": "^1.4.0",
+    "react-datepicker": "^4.13.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.12.1",
     "react-scripts": "5.0.1",
@@ -44,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-date-range": "^1.4.4"
   }
 }

@@ -30,6 +30,7 @@
   align-items: center;
   background: center 27% / cover #132968;
   height: 256px;
+  z-index: -1;
 }
 
 @media screen and (min-width: 1024px) {

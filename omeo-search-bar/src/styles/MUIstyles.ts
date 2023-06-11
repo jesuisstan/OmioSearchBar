@@ -27,7 +27,7 @@ export const modalClose = {
   bgcolor: color.OMEO_WHITE,
   transition: 'background-color 0.3s ease-in-out',
   ':hover': {
-    bgcolor: color.OMEO_BLUE
+    bgcolor: color.OMEO_NAVY
   }
 };
 
