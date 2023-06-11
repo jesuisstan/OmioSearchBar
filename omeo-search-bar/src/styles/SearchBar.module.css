@@ -1,0 +1,44 @@
+.basicCard {
+  max-width: 1168px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -90px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lobbyCard {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 30px;
+  padding: 30px;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  pointer-events: all;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(19, 41, 104, 0.1);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  z-index: 9999;
+}
+
+@media (width <= 900px) {
+  .lobbyCard {
+    line-height: 1.4;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 42px;
+  }
+  .header {
+    margin-top: 63px;
+  }
+}

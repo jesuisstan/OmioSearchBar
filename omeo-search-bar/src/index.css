@@ -1,10 +1,13 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "GT Walsheim",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f1f2f6;
+  /*background: url('https://www.omio.com/gcs-proxy/static_content_repo/web/content/rest/hero/front_page-dw.jpg') no-repeat;
+  background-size: cover;*/
+  background-color: #f1f2f6;
+  letter-spacing: .15px;
+  word-spacing: -0.4px;
+  overflow-x: hidden;
 }
 
 * {
@@ -13,7 +16,36 @@ body {
   box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: whitesmoke;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+}
+
+a:hover {
+  transition-duration: 0.5s;
+  color: #fa6b6b;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
 }
