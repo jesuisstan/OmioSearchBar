@@ -9,10 +9,19 @@ import dayjs, { Dayjs } from 'dayjs';
 import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import RoomIcon from '@mui/icons-material/Room';
 import * as MUI from '../styles/MUIstyles';
+import AutoTextField from './AutoTextField';
 
 const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
+
+  const onFrom = (e: any) => {
+    setFrom(e.target.value);
+  };
+
+  const onTo= (e: any) => {
+    setTo(e.target.value);
+  };
 
   const [dateRange, setDateRange] = useState<DateRange<Dayjs>>([
     dayjs().add(1, 'day'),
@@ -26,7 +35,12 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={styles.searchBlock}>
-        <TextField
+        <AutoTextField
+          placeholder={'From: City, Station Or Airport'}
+          onChange={onFrom}
+          icon={<TripOriginIcon sx={MUI.textFieldIcon} />}
+        />
+        {/*<TextField
           id="from"
           value={from}
           variant="standard"
@@ -41,24 +55,14 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
             disableUnderline: true
           }}
           sx={MUI.textField}
+        />*/}
+
+        <AutoTextField
+          placeholder={'To: City, Station Or Airport'}
+          onChange={onTo}
+          icon={<RoomIcon sx={MUI.textFieldIcon} />}
         />
 
-        <TextField
-          id="to"
-          value={to}
-          variant="standard"
-          required
-          fullWidth
-          name="departure from"
-          autoComplete="none"
-          onChange={(e) => setTo(e.target.value)}
-          placeholder="To: City, Station Or Airport"
-          InputProps={{
-            startAdornment: <RoomIcon sx={MUI.textFieldIcon} />,
-            disableUnderline: true
-          }}
-          sx={MUI.textField}
-        />
         <div style={{ width: '100%' }}>
           <DateRangePicker
             value={dateRange}

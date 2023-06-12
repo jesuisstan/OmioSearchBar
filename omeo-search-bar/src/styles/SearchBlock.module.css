@@ -8,6 +8,7 @@
   padding: 10px;
   overflow: auto;
   pointer-events: all;
+  width: 100%
 }
 
 .btn {
