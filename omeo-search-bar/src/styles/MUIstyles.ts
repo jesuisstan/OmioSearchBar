@@ -27,6 +27,14 @@ export const textFieldIcon = {
   width: '20px'
 };
 
+export const textFieldIconDropDown = {
+  color: '#132968',
+  marginLeft: '8px',
+  marginRight: '4px',
+  height: '20px',
+  width: '20px'
+};
+
 export const boxStyle = {
   display: 'flex',
   flexDirection: 'column',

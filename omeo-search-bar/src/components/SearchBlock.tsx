@@ -23,11 +23,9 @@ interface City {
 
 const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
   const [text, setText] = useState('paris');
-  const [from, setFrom] = useState('');
+  const [from, setFrom] = useState('Z');
   const [to, setTo] = useState('');
 
-  let POPULAR_FROM = `https://api.comparatrip.eu/cities/popular/from/${from}/5`;
-  //https://api.comparatrip.eu/cities/autocomplete/?q=par
   const [popularFromCities, setPopularFromCities] = useState<City[]>([]);
   const [popularToCities, setPopularToCities] = useState<City[]>([]);
   const [autocompletedCities, setAutocompletedCities] = useState<City[]>([]);
@@ -62,6 +60,7 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
     fetchData();
   }, [text]);
 
+  let POPULAR_FROM = `https://api.comparatrip.eu/cities/popular/from/${from}/5`;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -79,8 +78,8 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
     setText(e.target.value.toLowerCase());
   };
 
-  const onFrom = (e: any) => {
-    setFrom(e.target.value.toLowerCase());
+  const onSubmitHandler = () => {
+    setFrom(text.toLowerCase());
   };
 
   const onTo = (e: any) => {
@@ -100,18 +99,6 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
       showConfirmButton: false,
       showCloseButton: true
     });
-
-    //Swal.fire({
-    //  showConfirmButton: false,
-    //  icon: 'error',
-    //  iconColor: '#fd5087',
-    //  width: 450,
-    //  title: 'Oops...',
-    //  text: text,
-    //  showCloseButton: true,
-    //  color: color.PONG_WHITE,
-    //  background: 'rgba(0, 0, 0, 0.95)'
-    //});
   };
 
   console.log('TEXT = ' + text);
@@ -123,6 +110,8 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
         <AutoTextField
           placeholder={'From: City, Station Or Airport'}
           onChange={handleTextInput}
+          from={from}
+          setFrom={setFrom}
           icon={<TripOriginIcon sx={MUI.textFieldIcon} />}
           popularCities={popularFromCities}
         />
@@ -146,6 +135,8 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
         <AutoTextField
           placeholder={'To: City, Station Or Airport'}
           onChange={onTo}
+          from={from}
+          setFrom={setFrom}
           icon={<RoomIcon sx={MUI.textFieldIcon} />}
           popularCities={popularToCities}
         />
