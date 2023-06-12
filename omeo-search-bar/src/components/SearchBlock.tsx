@@ -1,5 +1,6 @@
 import styles from '../styles/SearchBlock.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -10,16 +11,79 @@ import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import RoomIcon from '@mui/icons-material/Room';
 import * as MUI from '../styles/MUIstyles';
 import AutoTextField from './AutoTextField';
+import Swal from 'sweetalert2';
+import * as color from '../styles/colors';
+
+interface City {
+  id: string;
+  unique_name: string;
+  local_name: string;
+  // Add more properties based on the response data structure
+}
 
 const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
+  const [text, setText] = useState('paris');
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
 
-  const onFrom = (e: any) => {
-    setFrom(e.target.value);
+  let POPULAR_FROM = `https://api.comparatrip.eu/cities/popular/from/${from}/5`;
+  //https://api.comparatrip.eu/cities/autocomplete/?q=par
+  const [popularFromCities, setPopularFromCities] = useState<City[]>([]);
+  const [popularToCities, setPopularToCities] = useState<City[]>([]);
+  const [autocompletedCities, setAutocompletedCities] = useState<City[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          'https://api.comparatrip.eu/cities/popular/5'
+        );
+        setPopularFromCities(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.comparatrip.eu/cities/autocomplete/?q=${text}`
+        );
+        setPopularFromCities(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [text]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(POPULAR_FROM);
+        setPopularToCities(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [from]);
+
+  const handleTextInput = (e: any) => {
+    setText(e.target.value.toLowerCase());
   };
 
-  const onTo= (e: any) => {
+  const onFrom = (e: any) => {
+    setFrom(e.target.value.toLowerCase());
+  };
+
+  const onTo = (e: any) => {
     setTo(e.target.value);
   };
 
@@ -29,16 +93,38 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
   ]);
 
   const handleSearch = () => {
-    console.log('Search!!!');
+    Swal.fire({
+      title: 'Welcome to my Ecole 42\nweb project:',
+      html: '<a href="http://www.pongthegame.rocks" target="_blank" style="color: #fa6b6b;">www.pongthegame.rocks</a>',
+      background: color.OMEO_WHITE,
+      showConfirmButton: false,
+      showCloseButton: true
+    });
+
+    //Swal.fire({
+    //  showConfirmButton: false,
+    //  icon: 'error',
+    //  iconColor: '#fd5087',
+    //  width: 450,
+    //  title: 'Oops...',
+    //  text: text,
+    //  showCloseButton: true,
+    //  color: color.PONG_WHITE,
+    //  background: 'rgba(0, 0, 0, 0.95)'
+    //});
   };
 
+  console.log('TEXT = ' + text);
+  console.log('FROM = ' + from);
+  console.log('TO = ' + to);
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={styles.searchBlock}>
         <AutoTextField
           placeholder={'From: City, Station Or Airport'}
-          onChange={onFrom}
+          onChange={handleTextInput}
           icon={<TripOriginIcon sx={MUI.textFieldIcon} />}
+          popularCities={popularFromCities}
         />
         {/*<TextField
           id="from"
@@ -61,6 +147,7 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
           placeholder={'To: City, Station Or Airport'}
           onChange={onTo}
           icon={<RoomIcon sx={MUI.textFieldIcon} />}
+          popularCities={popularToCities}
         />
 
         <div style={{ width: '100%' }}>
