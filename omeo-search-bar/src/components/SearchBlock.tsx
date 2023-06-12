@@ -1,6 +1,3 @@
-import Box from '@mui/material/Box';
-import * as color from '../styles/colors';
-import * as MUI from '../styles/MUIstyles';
 import styles from '../styles/SearchBlock.module.css';
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
@@ -9,6 +6,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateRange } from '@mui/x-date-pickers-pro';
 import dayjs, { Dayjs } from 'dayjs';
+import TripOriginIcon from '@mui/icons-material/TripOrigin';
+import RoomIcon from '@mui/icons-material/Room';
+import * as MUI from '../styles/MUIstyles';
 
 const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
   const [from, setFrom] = useState('');
@@ -26,61 +26,73 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={styles.searchBlock}>
-        {/*<Box sx={MUI.boxStyle}>*/}
         <TextField
-          required
-          id="outlined-required"
-          placeholder="From: City, Station Or Airport"
+          id="from"
           value={from}
+          variant="standard"
+          required
+          fullWidth
+          name="departure from"
+          autoComplete="none"
           onChange={(e) => setFrom(e.target.value)}
-          //defaultValue="Hello World"
+          placeholder="From: City, Station Or Airport"
+          InputProps={{
+            startAdornment: <TripOriginIcon sx={MUI.textFieldIcon} />,
+            disableUnderline: true
+          }}
+          sx={MUI.textField}
         />
-        {/*</Box>*/}
-
-        {/*<Box sx={MUI.boxStyle}>*/}
 
         <TextField
-          required
-          id="outlined-required"
-          placeholder="To: City, Station Or Airport"
+          id="to"
           value={to}
+          variant="standard"
+          required
+          fullWidth
+          name="departure from"
+          autoComplete="none"
           onChange={(e) => setTo(e.target.value)}
-          //defaultValue="Hello World"
-        />
-        {/*</Box>*/}
-
-        {/*<Box sx={MUI.boxStyle}>*/}
-        {/*<input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />*/}
-
-        <DateRangePicker
-          value={dateRange}
-          onChange={(newValue) => setDateRange(newValue)}
-          localeText={{
-            start: 'Departure',
-            end: '+ Add return'
+          placeholder="To: City, Station Or Airport"
+          InputProps={{
+            startAdornment: <RoomIcon sx={MUI.textFieldIcon} />,
+            disableUnderline: true
           }}
+          sx={MUI.textField}
         />
-        {/*<DateRangeSelection onDateRangeChange={onDateRangeChange}></DateRangeSelection>*/}
-        {/*</Box>*/}
-        {/*<div>*/}
-        {/*
-          <ButtonOmio
-            onClick={() => {
-              console.log('Search!');
+        <div style={{ width: '100%' }}>
+          <DateRangePicker
+            value={dateRange}
+            onChange={(newValue) => setDateRange(newValue)}
+            localeText={{
+              start: 'Departure',
+              end: '+ Add return'
             }}
-          >
-            Search
-          </ButtonOmio>*/}
-          <div className={styles.wrapBtn}>
-        <button className={styles.btn} onClick={handleSearch}>
-          Search
-        </button>
+            //sx={{
+            //  height: '52px',
+            //  backgroundColor: '#f1f2f6',
+            //  color: '#132968',
+            //  transition: 'border .15s',
+            //  borderRadius: '8px',
+            //  display: 'flex',
+            //  flexDirection: 'row',
+            //  paddingRight: '10px',
+            //  border: '1px solid transparent',
+            //  '& input': {
+            //    color: '#132968',
+            //    fontSize: '16px'
+            //  },
+            //  '&:hover': {
+            //    border: '1px solid #a1a9c3'
+            //  }
+            //}}
+          />
+        </div>
 
-          </div>
+        <div className={styles.wrapBtn}>
+          <button className={styles.btn} onClick={handleSearch}>
+            Search
+          </button>
+        </div>
       </div>
     </LocalizationProvider>
   );
