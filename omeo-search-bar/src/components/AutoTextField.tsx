@@ -7,28 +7,36 @@ import * as color from '../styles/colors';
 
 interface AutoTextFieldProps {
   placeholder: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  from: string;
-  setFrom: React.Dispatch<React.SetStateAction<string>>;
+  setCity: React.Dispatch<React.SetStateAction<string>>;
   icon: React.ReactNode;
   popularCities?: any[];
+  setText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AutoTextField: React.FC<AutoTextFieldProps> = ({
   placeholder,
-  onChange,
-  from,
-  setFrom,
+  setCity,
   icon,
-  popularCities
+  popularCities,
+  setText
 }) => {
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      setFrom('aaaa'); 
-    }
+  let typeOfSearch: string;
+  const getType = (placeholder: string) => {
+    const arr = placeholder.split(':');
+    typeOfSearch = arr[0];
   };
+  getType(placeholder);
 
-  console.log('FFFFFFFFFFF ' + from);
+  const setDestination = (value: string) => {
+    let cityUniqueName = '';
+
+    const foundCity = popularCities?.find((city) => city.local_name === value);
+    if (foundCity) {
+      cityUniqueName = foundCity.unique_name;
+    }
+
+    setCity(cityUniqueName);
+  };
 
   const renderOption = (
     props: JSX.IntrinsicAttributes & { children?: React.ReactNode },
@@ -57,6 +65,7 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
     <div style={{ width: '100%' }}>
       <Autocomplete
         freeSolo
+        onChange={(event, value) => setDestination(value)}
         id="free-solo-2-demo"
         disableClearable
         options={popularCities!.map((item) => item.local_name)}
@@ -71,8 +80,11 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
               type: 'search'
             }}
             placeholder={placeholder}
-            onChange={onChange}
-            onSubmit={handleKeyPress}
+            onChange={(event) => {
+              if (typeOfSearch === 'From') {
+                setText(event.target.value);
+              }
+            }}
             sx={MUI.textField}
           />
         )}

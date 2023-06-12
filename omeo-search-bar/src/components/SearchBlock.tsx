@@ -1,7 +1,5 @@
-import styles from '../styles/SearchBlock.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import TextField from '@mui/material/TextField';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -13,22 +11,20 @@ import * as MUI from '../styles/MUIstyles';
 import AutoTextField from './AutoTextField';
 import Swal from 'sweetalert2';
 import * as color from '../styles/colors';
+import styles from '../styles/SearchBlock.module.css';
 
 interface City {
   id: string;
   unique_name: string;
   local_name: string;
-  // Add more properties based on the response data structure
 }
 
 const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
-  const [text, setText] = useState('paris');
-  const [from, setFrom] = useState('Z');
+  const [text, setText] = useState('');
+  const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
-
   const [popularFromCities, setPopularFromCities] = useState<City[]>([]);
   const [popularToCities, setPopularToCities] = useState<City[]>([]);
-  const [autocompletedCities, setAutocompletedCities] = useState<City[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +34,7 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
         );
         setPopularFromCities(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching "popular from" data:', error);
       }
     };
 
@@ -46,45 +42,37 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.comparatrip.eu/cities/autocomplete/?q=${text}`
-        );
-        setPopularFromCities(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+    if (text) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `https://api.comparatrip.eu/cities/autocomplete/?q=${text}`
+          );
+          setPopularFromCities(response.data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
 
-    fetchData();
+      fetchData();
+    }
   }, [text]);
 
   let POPULAR_FROM = `https://api.comparatrip.eu/cities/popular/from/${from}/5`;
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(POPULAR_FROM);
-        setPopularToCities(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+    if (from) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(POPULAR_FROM);
+          setPopularToCities(response.data);
+        } catch (error) {
+          console.error('Error fetching "popular to" data:', error);
+        }
+      };
 
-    fetchData();
+      fetchData();
+    }
   }, [from]);
-
-  const handleTextInput = (e: any) => {
-    setText(e.target.value.toLowerCase());
-  };
-
-  const onSubmitHandler = () => {
-    setFrom(text.toLowerCase());
-  };
-
-  const onTo = (e: any) => {
-    setTo(e.target.value);
-  };
 
   const [dateRange, setDateRange] = useState<DateRange<Dayjs>>([
     dayjs().add(1, 'day'),
@@ -92,13 +80,28 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
   ]);
 
   const handleSearch = () => {
-    Swal.fire({
-      title: 'Welcome to my Ecole 42\nweb project:',
-      html: '<a href="http://www.pongthegame.rocks" target="_blank" style="color: #fa6b6b;">www.pongthegame.rocks</a>',
-      background: color.OMEO_WHITE,
-      showConfirmButton: false,
-      showCloseButton: true
-    });
+    if (!from) {
+      Swal.fire({
+        title: 'Oops...',
+        text: 'Please, fill in "Departure (from)" field',
+        background: 'rgb(245, 245, 245, 0.8)',
+        showConfirmButton: true
+      });
+    } else if (!to) {
+      Swal.fire({
+        title: 'Oops...',
+        text: 'Please, fill in "Destination (to)" field',
+        background: 'rgb(245, 245, 245, 0.8)',
+        showConfirmButton: true
+      });
+    } else
+      Swal.fire({
+        title:
+          'Great! Search bar works!\n\nNow U R very welcome to check out my Ecole 42 web project:',
+        html: '<a href="http://www.pongthegame.rocks" target="_blank" style="color: #fa6b6b;">www.pongthegame.rocks</a>',
+        background: 'rgb(245, 245, 245, 0.8)',
+        showConfirmButton: false
+      });
   };
 
   console.log('TEXT = ' + text);
@@ -109,36 +112,18 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
       <div className={styles.searchBlock}>
         <AutoTextField
           placeholder={'From: City, Station Or Airport'}
-          onChange={handleTextInput}
-          from={from}
-          setFrom={setFrom}
+          setCity={setFrom}
           icon={<TripOriginIcon sx={MUI.textFieldIcon} />}
           popularCities={popularFromCities}
+          setText={setText}
         />
-        {/*<TextField
-          id="from"
-          value={from}
-          variant="standard"
-          required
-          fullWidth
-          name="departure from"
-          autoComplete="none"
-          onChange={(e) => setFrom(e.target.value)}
-          placeholder="From: City, Station Or Airport"
-          InputProps={{
-            startAdornment: <TripOriginIcon sx={MUI.textFieldIcon} />,
-            disableUnderline: true
-          }}
-          sx={MUI.textField}
-        />*/}
 
         <AutoTextField
           placeholder={'To: City, Station Or Airport'}
-          onChange={onTo}
-          from={from}
-          setFrom={setFrom}
+          setCity={setTo}
           icon={<RoomIcon sx={MUI.textFieldIcon} />}
           popularCities={popularToCities}
+          setText={setText}
         />
 
         <div style={{ width: '100%' }}>
