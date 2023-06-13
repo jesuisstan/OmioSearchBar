@@ -67,11 +67,12 @@ const TripSwitcher = ({ onClick }: { onClick: () => void }) => {
       />
       <Typography
         sx={{
-          fontWeight: '300',
+          fontWeight: '400',
           fontSize: '14px',
           marginLeft: '8px',
           marginBottom: '5px',
-          color: color.OMIO_VIOLET
+          color: color.OMIO_VIOLET,
+          fontFamily: '"GT Walsheim Pro", Arial, sans-serif'
         }}
       >
         Find my accommodation

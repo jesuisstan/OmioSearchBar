@@ -98,24 +98,25 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
               start: 'Departure',
               end: '+ Add return'
             }}
-            //sx={{
-            //  height: '52px',
-            //  backgroundColor: '#f1f2f6',
-            //  color: '#132968',
-            //  transition: 'border .15s',
-            //  borderRadius: '8px',
-            //  display: 'flex',
-            //  flexDirection: 'row',
-            //  paddingRight: '10px',
-            //  border: '1px solid transparent',
-            //  '& input': {
-            //    color: '#132968',
-            //    fontSize: '16px'
-            //  },
-            //  '&:hover': {
-            //    border: '1px solid #a1a9c3'
-            //  }
-            //}}
+            sx={{
+              fontFamily: '"GT Walsheim Pro",Arial,sans-serif',
+              height: '52px',
+              //backgroundColor: '#f1f2f6',
+              color: '#132968',
+              transition: 'border .15s',
+              borderRadius: '8px',
+              display: 'flex',
+              flexDirection: 'row',
+              paddingRight: '10px',
+              border: '1px solid transparent',
+              '& input': {
+                color: '#132968',
+                fontSize: '16px'
+              }
+              //'&:hover': {
+              //  border: '1px solid #a1a9c3'
+              //}
+            }}
           />
         </div>
 

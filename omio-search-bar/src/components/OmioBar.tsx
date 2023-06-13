@@ -2,6 +2,8 @@ import { useState } from 'react';
 import SearchBlock from './SearchBlock';
 import TripSwitcher from './TripSwitcher';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Typography from '@mui/joy/Typography';
+import * as color from '../styles/colors';
 import styles from '../styles/OmioBar.module.css';
 
 const OmioBar: React.FC = () => {
@@ -20,7 +22,18 @@ const OmioBar: React.FC = () => {
   return (
     <div className={styles.basicCard}>
       <div className={styles.searchCard}>
-        <h2>One-way</h2>
+        <Typography
+          sx={{
+            fontWeight: '400',
+            fontSize: '14px',
+            marginLeft: '8px',
+            marginBottom: '5px',
+            color: color.OMIO_VIOLET,
+            fontFamily: '"GT Walsheim Pro", Arial, sans-serif'
+          }}
+        >
+          One way
+        </Typography>
 
         <SearchBlock roundTrip={roundTrip} />
 

@@ -22,9 +22,9 @@ export const textField = {
 export const textFieldIcon = {
   color: '#a1a9c3',
   marginLeft: '8px',
-  marginRight: '4px',
-  height: '20px',
-  width: '20px'
+  marginRight: '8px',
+  height: '24px',
+  width: '24px'
 };
 
 export const textFieldIconDropDown = {
@@ -33,14 +33,4 @@ export const textFieldIconDropDown = {
   marginRight: '4px',
   height: '20px',
   width: '20px'
-};
-
-export const boxStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '21px',
-  maxWidth: '242px',
-  minWidth: '200px',
-  alignItems: 'center',
-  justifyContent: 'center'
 };

@@ -20,13 +20,6 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
   popularCities,
   setText
 }) => {
-  let typeOfSearch: string;
-  const getType = (placeholder: string) => {
-    const arr = placeholder.split(':');
-    typeOfSearch = arr[0];
-  };
-  getType(placeholder);
-
   const setDestination = (value: string) => {
     let cityUniqueName = '';
 
@@ -52,7 +45,8 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
             display: 'flex',
             alignItems: 'center',
             gap: '5px',
-            marginLeft: '-15px'
+            marginLeft: '-15px',
+            fontFamily: '"GT Walsheim Pro",Arial,sans-serif'
           }}
         >
           <RoomIcon sx={MUI.textFieldIconDropDown} /> {label}
@@ -65,10 +59,7 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
     <div style={{ width: '100%' }}>
       <Autocomplete
         freeSolo
-        onChange={(event, value) => {
-          console.log('VVVVVVvalue =====' + value);
-          setDestination(value);
-        }}
+        onChange={(event, value) => setDestination(value)}
         id="free-solo-2-demo"
         disableClearable
         options={popularCities!.map((item) => item.local_name)}
@@ -77,6 +68,7 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
             variant="standard"
             {...params}
             InputProps={{
+              style: { fontFamily: '"GT Walsheim Pro",Arial,sans-serif' },
               ...params.InputProps,
               startAdornment: icon,
               disableUnderline: true,
