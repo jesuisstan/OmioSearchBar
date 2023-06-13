@@ -56,7 +56,7 @@ const IOSSwitch = styled((props: SwitchProps) => (
   }
 }));
 
-const TripSwitcher = ({ onClick }: { onClick: () => void }) => {
+const AccommodationSwitcher = ({ onClick }: { onClick: () => void }) => {
   return (
     <Stack direction="row" spacing={1} alignItems="center">
       <IOSSwitch
@@ -81,4 +81,4 @@ const TripSwitcher = ({ onClick }: { onClick: () => void }) => {
   );
 };
 
-export default TripSwitcher;
+export default AccommodationSwitcher;

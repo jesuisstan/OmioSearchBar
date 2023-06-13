@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import SearchBlock from './SearchBlock';
-import TripSwitcher from './TripSwitcher';
+import AccommodationSwitcher from './AccommodationSwitcher';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/joy/Typography';
 import * as color from '../styles/colors';
 import styles from '../styles/OmioBar.module.css';
+import TripSelector from './TripSelector';
 
 const OmioBar: React.FC = () => {
   const [roundTrip, setRoundTrip] = useState(false);
@@ -22,7 +23,7 @@ const OmioBar: React.FC = () => {
   return (
     <div className={styles.basicCard}>
       <div className={styles.searchCard}>
-        <Typography
+        {/*<Typography
           sx={{
             fontWeight: '400',
             fontSize: '14px',
@@ -33,12 +34,16 @@ const OmioBar: React.FC = () => {
           }}
         >
           One way
-        </Typography>
+        </Typography>*/}
+        <TripSelector
+          roundTrip={roundTrip}
+          setRoundTrip={setRoundTrip}
+        ></TripSelector>
 
-        <SearchBlock roundTrip={roundTrip} />
+        <SearchBlock roundTrip={roundTrip} setRoundTrip={setRoundTrip} />
 
         <FormControlLabel
-          control={<TripSwitcher onClick={toogleRoundTrip} />}
+          control={<AccommodationSwitcher onClick={toogleRoundTrip} />}
           label=""
           labelPlacement="bottom"
           sx={{ margin: '0' }}

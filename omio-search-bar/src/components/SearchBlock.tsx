@@ -19,7 +19,13 @@ export interface City {
   local_name: string;
 }
 
-const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
+const SearchBlock = ({
+  roundTrip,
+  setRoundTrip
+}: {
+  roundTrip: boolean;
+  setRoundTrip: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [textFrom, setTextFrom] = useState('');
   const [from, setFrom] = useState('');
   const [textTo, setTextTo] = useState('');
@@ -27,6 +33,10 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
 
   const [popularFromCities, setPopularFromCities] = useState<City[]>([]);
   const [popularToCities, setPopularToCities] = useState<City[]>([]);
+  const [dateRange, setDateRange] = useState<DateRange<Dayjs>>([
+    dayjs().add(1, 'day'),
+    roundTrip ? dayjs().add(8, 'day') : dayjs('')
+  ]);
 
   useEffect(() => {
     fetchDataFrom({ textFrom, setPopularFromCities });
@@ -36,10 +46,12 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
     fetchDataTo({ from, textTo, setPopularToCities });
   }, [from, textTo]);
 
-  const [dateRange, setDateRange] = useState<DateRange<Dayjs>>([
-    dayjs().add(1, 'day'),
-    roundTrip ? dayjs().add(8, 'day') : dayjs('')
-  ]);
+  useEffect(() => {
+    setDateRange([
+      dayjs().add(1, 'day'),
+      roundTrip ? dayjs().add(8, 'day') : dayjs('')
+    ]);
+  }, [roundTrip]);
 
   const handleSearch = () => {
     if (!from) {
@@ -66,11 +78,6 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
       });
   };
 
-  console.log('TEXT_from = ' + textFrom);
-  console.log('TEXT_to = ' + textTo);
-
-  console.log('FROM = ' + from);
-  console.log('TO = ' + to);
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={styles.searchBlock}>
@@ -93,7 +100,16 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
         <div style={{ width: '100%' }}>
           <DateRangePicker
             value={dateRange}
-            onChange={(newValue) => setDateRange(newValue)}
+            onChange={(newValue) => {
+              setDateRange(newValue);
+              //console.log('dateRange ' + dateRange);
+              //console.log(typeof dateRange);
+
+              //if (dateRange[1]) {
+              //  setRoundTrip(true);
+              //  console.log('roundTrip ' + roundTrip)
+              //}
+            }}
             localeText={{
               start: 'Departure',
               end: '+ Add return'
