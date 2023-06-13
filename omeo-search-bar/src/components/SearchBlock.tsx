@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -7,72 +6,35 @@ import { DateRange } from '@mui/x-date-pickers-pro';
 import dayjs, { Dayjs } from 'dayjs';
 import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import RoomIcon from '@mui/icons-material/Room';
-import * as MUI from '../styles/MUIstyles';
 import AutoTextField from './AutoTextField';
 import Swal from 'sweetalert2';
-import * as color from '../styles/colors';
+import { fetchDataFrom } from '../utils/fetchDataFrom';
+import { fetchDataTo } from '../utils/fetchDataTo';
+import * as MUI from '../styles/MUIstyles';
 import styles from '../styles/SearchBlock.module.css';
 
-interface City {
+export interface City {
   id: string;
   unique_name: string;
   local_name: string;
 }
 
 const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
-  const [text, setText] = useState('');
+  const [textFrom, setTextFrom] = useState('');
   const [from, setFrom] = useState('');
+  const [textTo, setTextTo] = useState('');
   const [to, setTo] = useState('');
+
   const [popularFromCities, setPopularFromCities] = useState<City[]>([]);
   const [popularToCities, setPopularToCities] = useState<City[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          'https://api.comparatrip.eu/cities/popular/5'
-        );
-        setPopularFromCities(response.data);
-      } catch (error) {
-        console.error('Error fetching "popular from" data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    fetchDataFrom({ textFrom, setPopularFromCities });
+  }, [textFrom]);
 
   useEffect(() => {
-    if (text) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `https://api.comparatrip.eu/cities/autocomplete/?q=${text}`
-          );
-          setPopularFromCities(response.data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-
-      fetchData();
-    }
-  }, [text]);
-
-  let POPULAR_FROM = `https://api.comparatrip.eu/cities/popular/from/${from}/5`;
-  useEffect(() => {
-    if (from) {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(POPULAR_FROM);
-          setPopularToCities(response.data);
-        } catch (error) {
-          console.error('Error fetching "popular to" data:', error);
-        }
-      };
-
-      fetchData();
-    }
-  }, [from]);
+    fetchDataTo({ from, textTo, setPopularToCities });
+  }, [from, textTo]);
 
   const [dateRange, setDateRange] = useState<DateRange<Dayjs>>([
     dayjs().add(1, 'day'),
@@ -104,7 +66,9 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
       });
   };
 
-  console.log('TEXT = ' + text);
+  console.log('TEXT_from = ' + textFrom);
+  console.log('TEXT_to = ' + textTo);
+
   console.log('FROM = ' + from);
   console.log('TO = ' + to);
   return (
@@ -115,7 +79,7 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
           setCity={setFrom}
           icon={<TripOriginIcon sx={MUI.textFieldIcon} />}
           popularCities={popularFromCities}
-          setText={setText}
+          setText={setTextFrom}
         />
 
         <AutoTextField
@@ -123,7 +87,7 @@ const SearchBlock = ({ roundTrip }: { roundTrip: boolean }) => {
           setCity={setTo}
           icon={<RoomIcon sx={MUI.textFieldIcon} />}
           popularCities={popularToCities}
-          setText={setText}
+          setText={setTextTo}
         />
 
         <div style={{ width: '100%' }}>

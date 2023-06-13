@@ -35,7 +35,7 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
       cityUniqueName = foundCity.unique_name;
     }
 
-    setCity(cityUniqueName);
+    setCity(cityUniqueName || '');
   };
 
   const renderOption = (
@@ -65,7 +65,10 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
     <div style={{ width: '100%' }}>
       <Autocomplete
         freeSolo
-        onChange={(event, value) => setDestination(value)}
+        onChange={(event, value) => {
+          console.log('VVVVVVvalue =====' + value);
+          setDestination(value);
+        }}
         id="free-solo-2-demo"
         disableClearable
         options={popularCities!.map((item) => item.local_name)}
@@ -81,8 +84,9 @@ const AutoTextField: React.FC<AutoTextFieldProps> = ({
             }}
             placeholder={placeholder}
             onChange={(event) => {
-              if (typeOfSearch === 'From') {
-                setText(event.target.value);
+              setText(event.target.value);
+              if (event.target.value.length === 0) {
+                setCity('');
               }
             }}
             sx={MUI.textField}
