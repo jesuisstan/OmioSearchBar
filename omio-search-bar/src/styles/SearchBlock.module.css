@@ -1,0 +1,66 @@
+.searchBlock {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 15px;
+  padding: 10px;
+  overflow: auto;
+  pointer-events: all;
+  width: 100%
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  line-height: 20px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'GT Walsheim', 'Open Sans', Helvetica-Neue, Helvetica, Arial,
+    sans-serif;
+  font-weight: 500;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s linear;
+  height: 48px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #fa6b6b;
+}
+
+:hover.btn {
+  background-color: #fb8989;
+}
+
+.wrapBtn {
+  margin: 4px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  width: 60%;
+}
+
+@media (width <= 769px) {
+  .searchBlock {
+    line-height: 1.4;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 42px;
+  }
+  .wrapBtn {
+    width: 100%;
+  }
+}
