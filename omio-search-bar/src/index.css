@@ -2,7 +2,7 @@ body {
   font-family: "GT Walsheim Pro",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f1f2f6;
+  background-color: rgb(241, 242, 246);
   letter-spacing: .15px;
   word-spacing: -0.4px;
   overflow-x: hidden;

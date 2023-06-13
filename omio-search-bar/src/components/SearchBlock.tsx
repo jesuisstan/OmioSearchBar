@@ -102,6 +102,7 @@ const SearchBlock = ({
             value={dateRange}
             onChange={(newValue) => {
               setDateRange(newValue);
+              setRoundTrip(!roundTrip);
               //console.log('dateRange ' + dateRange);
               //console.log(typeof dateRange);
 

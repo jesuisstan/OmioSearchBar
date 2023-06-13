@@ -60,7 +60,9 @@ const AccommodationSwitcher = ({ onClick }: { onClick: () => void }) => {
   return (
     <Stack direction="row" spacing={1} alignItems="center">
       <IOSSwitch
-        checked={localStorage.getItem('roundTrip') === 'true' ? true : false}
+        checked={
+          localStorage.getItem('needAccommodation') === 'true' ? true : false
+        }
         sx={{ m: 1 }}
         onClick={onClick}
         color="default"

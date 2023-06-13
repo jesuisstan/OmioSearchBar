@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
-import NativeSelect from '@mui/material/NativeSelect';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import * as color from '../styles/colors';
 
 const TripSelector = ({
@@ -10,33 +11,46 @@ const TripSelector = ({
   roundTrip: boolean;
   setRoundTrip: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-
-	console.log(roundTrip)
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <NativeSelect
+      <FormControl variant="standard">
+        <Select
           sx={{
-            fontFamily: '"GT Walsheim Pro",Arial,sans-serif',
+            fontFamily: '"GT Walsheim Pro", Arial, sans-serif',
             fontWeight: '400',
             fontSize: '14px',
-            marginLeft: '8px',
+            marginLeft: '-8px',
             color: color.OMIO_VIOLET
           }}
           disableUnderline
           defaultValue={'One-way'}
-          inputProps={{
-            id: 'uncontrolled-native'
-          }}
           onChange={(e) => {
-						
-							setRoundTrip(!roundTrip)
-						
-					}}
+            setRoundTrip(!roundTrip);
+          }}
+          MenuProps={{
+            anchorOrigin: {
+              vertical: 'bottom',
+              horizontal: 'center'
+            },
+            transformOrigin: {
+              vertical: 'top',
+              horizontal: 'left'
+            }
+          }}
         >
-          <option value={'One way'}>One-way</option>
-          <option value={'Round trip'}>Round trip</option>
-        </NativeSelect>
+          <MenuItem
+            sx={{ fontFamily: '"GT Walsheim Pro", Arial, sans-serif' }}
+            value={'One-way'}
+          >
+            One-way
+          </MenuItem>
+          <MenuItem
+            sx={{ fontFamily: '"GT Walsheim Pro", Arial, sans-serif' }}
+            value={'Round trip'}
+          >
+            Round trip
+          </MenuItem>
+        </Select>
       </FormControl>
     </Box>
   );
