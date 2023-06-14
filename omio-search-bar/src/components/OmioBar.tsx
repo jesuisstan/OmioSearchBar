@@ -27,7 +27,6 @@ const OmioBar: React.FC = () => {
         <TripSelector roundTrip={roundTrip} setRoundTrip={setRoundTrip} />
         <SearchBlock
           roundTrip={roundTrip}
-          setRoundTrip={setRoundTrip}
           needAccommodation={needAccommodation}
         />
         <FormControlLabel

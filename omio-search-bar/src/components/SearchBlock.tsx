@@ -20,11 +20,9 @@ export interface City {
 
 const SearchBlock = ({
   roundTrip,
-  setRoundTrip,
   needAccommodation
 }: {
   roundTrip: boolean;
-  setRoundTrip: React.Dispatch<React.SetStateAction<boolean>>;
   needAccommodation: boolean;
 }) => {
   const [textFrom, setTextFrom] = useState('');
@@ -36,7 +34,6 @@ const SearchBlock = ({
   const [departureDate, setDepartureDate] = useState<Dayjs | null>(dayjs());
   const [returnDate, setReturnDate] = useState<Dayjs | null>(null);
 
-  console.log(departureDate?.toDate());
   const [popularFromCities, setPopularFromCities] = useState<City[]>([]);
   const [popularToCities, setPopularToCities] = useState<City[]>([]);
 
@@ -84,6 +81,7 @@ const SearchBlock = ({
                   placeholder: '+ Add return',
                   variant: 'standard',
                   InputProps: {
+                    readOnly: true,
                     disableUnderline: true,
                     style: MUI.slotPropsForData
                   }
@@ -103,6 +101,7 @@ const SearchBlock = ({
                   placeholder: '+ Add return',
                   variant: 'standard',
                   InputProps: {
+                    readOnly: true,
                     disableUnderline: true,
                     style: MUI.slotPropsForData
                   }

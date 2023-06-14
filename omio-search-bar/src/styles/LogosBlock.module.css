@@ -1,0 +1,54 @@
+.basicCard {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: left;
+  text-align: left;
+  gap: 50px;
+  /*margin-top: 60px;*/
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px;
+  max-width: 1168px;
+  transition: max-width 0.5s ease-in-out;
+}
+
+.allYour {
+  color: #132968;
+  font-size: 40px;
+  line-height: 48px;
+  margin: 0 0 16px;
+  transition: font-size 0.5s ease-in-out;
+}
+
+.moreThan {
+  color: rgb(19, 41, 104);
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 0 32px;
+  font-weight: 400;
+}
+
+.picture {
+  max-width: 50%;
+}
+
+@media (width <= 769px) {
+  .basicCard {
+    flex-direction: column;
+    gap: 0px;
+  }
+  .allYour {
+    font-size: 30px;
+    line-height: 36px;
+    margin: 0 0 6px;
+    word-break: break-word;
+  }
+  .moreThan {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .picture {
+    max-width: 100%;
+  }
+}
