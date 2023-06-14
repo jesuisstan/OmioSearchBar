@@ -48,4 +48,4 @@ export const slotPropsForData = {
   backgroundColor: '#f1f2f6',
   borderRadius: '8px',
   height: '48px'
-}
+};

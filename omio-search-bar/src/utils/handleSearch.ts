@@ -1,26 +1,49 @@
-import Swal from 'sweetalert2';
+import errorAlert from './errorAlert';
+import successAlert from './successAlert';
 
-export const handleSearch = (from: string, to: string) => {
+const capitalizeString = (str: string) => {
+  if (typeof str !== 'string') {
+    return '';
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+export const handleSearch = (
+  from: string,
+  to: string,
+  departureDate: Date | undefined,
+  returnDate: Date | undefined,
+  roundTrip: boolean,
+  needAccommodation: boolean
+) => {
+  console.log(departureDate?.toDateString());
   if (!from) {
-    Swal.fire({
-      title: 'Oops...',
-      text: 'Please, fill in "Departure (from)" field',
-      background: 'rgb(245, 245, 245, 0.8)',
-      showConfirmButton: true
-    });
+    errorAlert('Please fill in departure');
   } else if (!to) {
-    Swal.fire({
-      title: 'Oops...',
-      text: 'Please, fill in "Destination (to)" field',
-      background: 'rgb(245, 245, 245, 0.8)',
-      showConfirmButton: true
-    });
+    errorAlert('Please fill in destination');
+  } else if (to === from) {
+    errorAlert('Destination and point of departure cannot be the same');
+  } else if (returnDate && departureDate && departureDate > returnDate) {
+    errorAlert('Return date cannot be earlier than Departure');
+  } else if (
+    returnDate?.toDateString() === 'Invalid Date' ||
+    departureDate?.toDateString() === 'Invalid Date'
+  ) {
+    errorAlert(
+      `Please correct the ${
+        departureDate?.toDateString() === 'Invalid Date'
+          ? 'Departure'
+          : 'Return'
+      } date`
+    );
   } else
-    Swal.fire({
-      title:
-        'Great! Search bar works!\n\nNow U R very welcome to check out my Ecole 42 web project:',
-      html: '<a href="http://www.pongthegame.rocks" target="_blank" style="color: #fa6b6b;">www.pongthegame.rocks</a>',
-      background: 'rgb(245, 245, 245, 0.8)',
-      showConfirmButton: false
-    });
+    successAlert(
+      `${!roundTrip ? 'One-way' : 'Round'} trip
+      from ${capitalizeString(from)} to ${capitalizeString(to)}
+      on ${departureDate?.toDateString()} ${
+        roundTrip ? `and return on ${returnDate?.toDateString()}` : ''
+      }
+      with ${needAccommodation ? '' : 'no '}accommodation.
+      \nBTW! Check out my:`
+    );
 };

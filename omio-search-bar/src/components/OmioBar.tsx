@@ -25,7 +25,11 @@ const OmioBar: React.FC = () => {
     <div className={styles.basicCard}>
       <div className={styles.searchCard}>
         <TripSelector roundTrip={roundTrip} setRoundTrip={setRoundTrip} />
-        <SearchBlock roundTrip={roundTrip} setRoundTrip={setRoundTrip} />
+        <SearchBlock
+          roundTrip={roundTrip}
+          setRoundTrip={setRoundTrip}
+          needAccommodation={needAccommodation}
+        />
         <FormControlLabel
           control={<AccommodationSwitcher onClick={toogleNeedAccommodation} />}
           label=""

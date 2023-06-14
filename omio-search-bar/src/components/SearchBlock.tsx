@@ -20,10 +20,12 @@ export interface City {
 
 const SearchBlock = ({
   roundTrip,
-  setRoundTrip
+  setRoundTrip,
+  needAccommodation
 }: {
   roundTrip: boolean;
   setRoundTrip: React.Dispatch<React.SetStateAction<boolean>>;
+  needAccommodation: boolean;
 }) => {
   const [textFrom, setTextFrom] = useState('');
   const [from, setFrom] = useState('');
@@ -34,6 +36,7 @@ const SearchBlock = ({
   const [departureDate, setDepartureDate] = useState<Dayjs | null>(dayjs());
   const [returnDate, setReturnDate] = useState<Dayjs | null>(null);
 
+  console.log(departureDate?.toDate());
   const [popularFromCities, setPopularFromCities] = useState<City[]>([]);
   const [popularToCities, setPopularToCities] = useState<City[]>([]);
 
@@ -110,7 +113,19 @@ const SearchBlock = ({
         </div>
 
         <div className={styles.wrapBtn}>
-          <button className={styles.btn} onClick={() => handleSearch(from, to)}>
+          <button
+            className={styles.btn}
+            onClick={() =>
+              handleSearch(
+                from,
+                to,
+                departureDate?.toDate(),
+                returnDate?.toDate(),
+                roundTrip,
+                needAccommodation
+              )
+            }
+          >
             Search
           </button>
         </div>
