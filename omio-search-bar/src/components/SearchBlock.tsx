@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import AutoTextField from './AutoTextField';
 import { fetchDataFrom } from '../utils/fetchDataFrom';
 import { fetchDataTo } from '../utils/fetchDataTo';
@@ -27,8 +27,12 @@ const SearchBlock = ({
 }) => {
   const [textFrom, setTextFrom] = useState('');
   const [from, setFrom] = useState('');
+
   const [textTo, setTextTo] = useState('');
   const [to, setTo] = useState('');
+
+  const [departureDate, setDepartureDate] = useState<Dayjs | null>(dayjs());
+  const [returnDate, setReturnDate] = useState<Dayjs | null>(null);
 
   const [popularFromCities, setPopularFromCities] = useState<City[]>([]);
   const [popularToCities, setPopularToCities] = useState<City[]>([]);
@@ -40,6 +44,10 @@ const SearchBlock = ({
   useEffect(() => {
     fetchDataTo({ from, textTo, setPopularToCities });
   }, [from, textTo]);
+
+  useEffect(() => {
+    setReturnDate(roundTrip ? dayjs().add(7, 'day') : null);
+  }, [roundTrip]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -64,11 +72,13 @@ const SearchBlock = ({
         <div className={styles.datesGroup}>
           <div className={styles.date}>
             <DatePicker
-              defaultValue={dayjs()}
+              value={departureDate}
+              onChange={(newValue) => setDepartureDate(newValue)}
               format="ddd, MMM DD"
               disablePast
               slotProps={{
                 textField: {
+                  placeholder: '+ Add return',
                   variant: 'standard',
                   InputProps: {
                     disableUnderline: true,
@@ -80,12 +90,14 @@ const SearchBlock = ({
           </div>
           <div className={styles.date}>
             <DatePicker
+              value={returnDate}
               disabled={roundTrip ? false : true}
-              defaultValue={dayjs().add(7, 'day')}
+              onChange={(newValue) => setReturnDate(newValue)}
               format="ddd, MMM DD"
               disablePast
               slotProps={{
                 textField: {
+                  placeholder: '+ Add return',
                   variant: 'standard',
                   InputProps: {
                     disableUnderline: true,
