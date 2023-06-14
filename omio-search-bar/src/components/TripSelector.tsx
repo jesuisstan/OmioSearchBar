@@ -23,7 +23,7 @@ const TripSelector = ({
             color: color.OMIO_VIOLET
           }}
           disableUnderline
-          defaultValue={'One-way'}
+          defaultValue={roundTrip ? 'Round trip' : 'One-way'}
           onChange={(e) => {
             setRoundTrip(!roundTrip);
           }}

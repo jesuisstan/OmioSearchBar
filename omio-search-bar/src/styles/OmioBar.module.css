@@ -16,11 +16,12 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
-  padding: 30px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   overflow: auto;
   margin-left: auto;
   margin-right: auto;
-
   pointer-events: all;
   background: #fff;
   box-shadow: 0 4px 8px rgba(19, 41, 104, 0.1);
@@ -34,6 +35,7 @@
   .basicCard {
     padding: 0 32px;
     max-width: 768px;
+    margin-top: -146px;
   }
 }
 
@@ -44,5 +46,10 @@
     align-items: left;
     justify-content: center;
     margin-bottom: 42px;
+  }
+  .basicCard {
+    margin-top: -146px;
+    margin-left: -15px;
+    margin-right: -15px;
   }
 }
