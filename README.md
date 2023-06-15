@@ -63,18 +63,18 @@ Firstly install all the dependencies according to 'package.json' file:
 npm install
 ```
 ### To run the production build of the app:
-1. Install [serve](https://github.com/vercel/serve) and let it handle the rest with cmd:
+1. Install [serve](https://github.com/vercel/serve) and let it handle the rest:
 ```sh
 npm install -g serve
 ```
 
-2. Start 'Omio-Like Search Bar' App with cmd:
+2. Start 'Omio-Like Search Bar' App:
 ```sh
-serve -s build
+npm run build
 ```
 
 ### To run the app in the development mode:
-1. Start 'TodoReactApp' with cmd:
+1. Start 'Omio-Like Search Bar' App:
 ```sh
 npm start
 ```
