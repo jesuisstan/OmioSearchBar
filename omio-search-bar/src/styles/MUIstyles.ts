@@ -47,5 +47,5 @@ export const slotPropsForData = {
   paddingRight: '12px',
   backgroundColor: '#f1f2f6',
   borderRadius: '8px',
-  height: '48px'
+  height: '48px',
 };
