@@ -20,7 +20,6 @@ export const handleSearch = (
   roundTrip: boolean,
   needAccommodation: boolean
 ) => {
-  console.log(departureDate?.toDateString());
   if (!from) {
     errorAlert('Please fill in departure');
   } else if (!to) {

@@ -42,9 +42,7 @@ The implemented search bar closely resembles the one found on Omio, providing au
 ## Demonstration
 
 
-
 https://github.com/jesuisstan/OmioSearchBar/assets/82715902/d4079f8e-1b19-4c48-a47a-21982cd0f59c
-
 
 
 ## Future Improvements
@@ -58,3 +56,27 @@ While the project has been successfully implemented and deployed, there are pote
 - **Safari browser support** was not tested.
 
 By addressing these areas for improvement, the project can be further optimized and polished, providing an even better user experience similar to that of Omio.
+
+## How to use
+Firstly install all the dependencies according to 'package.json' file:
+```sh
+npm install
+```
+### To run the production build of the app:
+1. Install [serve](https://github.com/vercel/serve) and let it handle the rest with cmd:
+```sh
+npm install -g serve
+```
+
+2. Start 'Omio-Like Search Bar' App with cmd:
+```sh
+serve -s build
+```
+
+### To run the app in the development mode:
+1. Start 'TodoReactApp' with cmd:
+```sh
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the App in browser.
