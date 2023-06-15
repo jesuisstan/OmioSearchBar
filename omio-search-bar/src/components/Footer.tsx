@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <div className={styles.footerBasic}>
       <footer>
         <p className={styles.copyright}>
-          Omeo Search Bar © 2023 | Tictactrip frontend assessment |{' '}
+          Omeo-Like Search Bar © 2023 | Tictactrip frontend assessment |{' '}
           <a
             href="https://github.com/jesuisstan/OmeoSearchBar"
             className={styles.footerLink}
