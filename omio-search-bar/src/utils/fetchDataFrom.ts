@@ -9,6 +9,7 @@ export const fetchDataFrom = async ({
   setPopularFromCities: React.Dispatch<React.SetStateAction<City[]>>;
 }) => {
   if (!textFrom) {
+    // fetching 5 popular cities to departure from
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -22,6 +23,7 @@ export const fetchDataFrom = async ({
 
     fetchData();
   } else if (textFrom) {
+    // fetching autosuggestions in case user is typing a departure city name
     const fetchData = async () => {
       try {
         const response = await axios.get(

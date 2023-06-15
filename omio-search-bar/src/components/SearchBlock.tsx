@@ -1,3 +1,11 @@
+/*
+React component responsible for rendering a search block with input fields
+for selecting the origin and destination cities, departure and return dates, and a search button.
+The input fields are autocompleted based on popular city suggestions fetched from the server.
+The component Uses the 'LocalizationProvider' to configure the date picker's localization settings. 
+It uses the AdapterDayjs to integrate dayjs as the date library.
+*/
+
 import { useEffect, useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -38,14 +46,21 @@ const SearchBlock = ({
   const [popularToCities, setPopularToCities] = useState<City[]>([]);
 
   useEffect(() => {
+    /* fetching cities for autocomplete to fly from
+      Called on load and changing Origin (From) text field */
     fetchDataFrom({ textFrom, setPopularFromCities });
   }, [textFrom]);
 
   useEffect(() => {
+    /* fetching cities for autocomplete to fly from
+      Called on load and on setting new value to var 'from'
+      or changing Destination (To) text field */
     fetchDataTo({ from, textTo, setPopularToCities });
   }, [from, textTo]);
 
   useEffect(() => {
+    /* Automaticly sets the return date (7 days plus today)
+      when user chooses that the trip would be round */
     setReturnDate(roundTrip ? dayjs().add(7, 'day') : null);
   }, [roundTrip]);
 

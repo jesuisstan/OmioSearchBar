@@ -1,3 +1,9 @@
+/*
+React component to set the type of user's trip: 
+- one-way
+- round trip
+*/
+
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';

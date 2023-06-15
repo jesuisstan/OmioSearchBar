@@ -1,3 +1,7 @@
+/*
+Function to handle Search button click.
+*/
+
 import errorAlert from './errorAlert';
 import successAlert from './successAlert';
 

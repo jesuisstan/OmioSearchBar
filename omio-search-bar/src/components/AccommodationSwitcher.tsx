@@ -1,3 +1,9 @@
+/*
+Component switches the toombler if user wants to find accommodation too.
+Changes var 'needAccommodation' value and
+stores a sign to localStorage to keep this Switcher on after page reload.
+*/
+
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/joy/Typography';

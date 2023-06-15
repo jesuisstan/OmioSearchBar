@@ -1,3 +1,14 @@
+/*
+React functional component to render an autocomplete text field with a search functionality.
+Used both for Departure and Destination text fields.
+The component takes the following props:
+- placeholder: A string representing the placeholder text for the text field.
+- setCity: A React state setter function used to update the selected city value.
+- icon: A React node representing an icon to be displayed as a start adornment in the text field.
+- popularCities: An optional array containing popular city data.
+- setText: A React state setter function used to update the text entered in the text field.
+*/
+
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';

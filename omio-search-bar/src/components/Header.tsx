@@ -1,3 +1,8 @@
+/*
+Actually this is not a Header component itself,
+but it containes tags on the top side of the App's page
+*/
+
 import styles from '../styles/Header.module.css';
 
 const Header = () => {

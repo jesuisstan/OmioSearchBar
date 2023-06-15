@@ -1,3 +1,7 @@
+/*
+Component containes tags on the bottom side of the App's page
+*/
+
 import styles from '../styles/LogosBlock.module.css';
 
 const LogosBlock = () => {

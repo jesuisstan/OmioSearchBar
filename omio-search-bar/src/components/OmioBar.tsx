@@ -1,3 +1,9 @@
+/*
+Parent Omio-Like Search bar React component.
+Containes var 'roundTrip' and 'needAccommodation',
+and drills them to children components. 
+*/
+
 import { useState } from 'react';
 import SearchBlock from './SearchBlock';
 import AccommodationSwitcher from './AccommodationSwitcher';

@@ -1,3 +1,7 @@
+/*
+Function to popup alert if user missed something.
+*/
+
 import Swal from 'sweetalert2';
 import * as color from '../styles/colors';
 
