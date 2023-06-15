@@ -5,8 +5,7 @@ The source code with explanatory comments is available on GitHub [repository](ht
 
 ## Objective
 
-The objective of this web project was to recreate and deploy a search bar that closely resembles the one found on Omio.\
-(Recréer et déployer une barre de recherche le plus proche possible de celle de Omio).
+The objective of this web project was to recreate and deploy a search bar that closely resembles the one found on Omio (Recréer et déployer une barre de recherche le plus proche possible de celle de Omio).
 
 ## Implementation
 
@@ -32,7 +31,7 @@ Proper API calls were made to fetch the required data for autocomplete suggestio
 
 3. **Custom Styling with CSS Modules & Custom Fonts**: In addition to Material UI, custom styling was implemented using CSS modules. To closely resemble the typography used on the Omio website, the GTWalsheimPro font was installed and applied to the project. This helps in achieving a consistent visual representation and enhances the similarity to the Omio search bar.
 
-4. **Deployment**: The code was deployed on a Digital Ocean web server and made accessible through the following [URL](http://209.38.216.33:5555/).
+4. **Deployment**: The code was deployed on a Digital Ocean web server and made accessible through the [URL](http://209.38.216.33:5555/).
 
 5. **Version Control**: The code was hosted on GitHub and made publicly accessible. The repository can be found at https://github.com/jesuisstan/OmioSearchBar.
 
@@ -41,6 +40,11 @@ Proper API calls were made to fetch the required data for autocomplete suggestio
 The implemented search bar closely resembles the one found on Omio, providing autocomplete suggestions based on user input. The responsive design ensures a seamless experience across different devices. The deployment of the project on a web server allows users to access and interact with the search bar through the provided [URL](http://209.38.216.33:5555/).
 
 ## Demonstration
+
+
+
+https://github.com/jesuisstan/OmioSearchBar/assets/82715902/d4079f8e-1b19-4c48-a47a-21982cd0f59c
+
 
 
 ## Future Improvements
