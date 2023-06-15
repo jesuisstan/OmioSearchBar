@@ -79,4 +79,4 @@ serve -s build
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the App in browser.
+Open [http://localhost:5555](http://localhost:5555) to view the App in browser.
