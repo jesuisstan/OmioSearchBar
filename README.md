@@ -1,9 +1,7 @@
-# OmioSearchBar
+# Project Documentation: Omio-Like Search Bar
 
 The deployed project can be accessed at http://209.38.216.33:5555/. \
 The source code with explanatory comments is available on GitHub [repository](https://github.com/jesuisstan/OmioSearchBar).
-
-# Project Documentation: Omio-Like Search Bar
 
 ## Objective
 
@@ -12,9 +10,9 @@ The objective of this web project was to recreate and deploy a search bar that c
 
 ## Implementation
 
-The project was implemented using functional components and popular hooks like useState and useEffect in ReactJS with TypeScript, leveraging the Material UI library for its components and styling, in addition to custom CSS modules. The search bar was developed to be responsive, following a mobile-first approach. The following steps were taken to complete the project:
+The project was implemented using functional components and popular hooks in ReactJS with TypeScript and [Create React App](https://facebook.github.io/create-react-app/docs/getting-started), leveraging the Material UI library for its components and styling, in addition to custom CSS modules. The search bar was developed to be responsive, following a mobile-first approach. The following steps were taken to complete the project:
 
-1.  API Integration: Three APIs provided by Tictactrip were used to populate the autocomplete functionality of the search bar. The APIs used are as follows:
+1.  **API Integration**: Three APIs provided by Tictactrip were used to populate the autocomplete functionality of the search bar. The APIs used are as follows:
 
     1.1. Autocomplete for cities available on Tictactrip:
 
@@ -30,24 +28,29 @@ The project was implemented using functional components and popular hooks like u
 
 Proper API calls were made to fetch the required data for autocomplete suggestions.
 
-2. Material UI Components: Material UI components were utilized to achieve a consistent and visually appealing design. Components such as TextField, Dropdown Menus, and Buttons were used to create the search bar and related elements. The styling and layout were customized to match the design of Omio.
+2. **Material UI Components**: Material UI components were utilized to achieve a consistent and visually appealing design. Components such as TextField, Dropdown Menus, and Buttons were used to create the search bar and related elements. The styling and layout were customized to match the design of Omio.
 
-3. Custom Styling with CSS Modules & Custom Fonts: In addition to Material UI, custom styling was implemented using CSS modules. To closely resemble the typography used on the Omio website, the GTWalsheimPro font was installed and applied to the project. This helps in achieving a consistent visual representation and enhances the similarity to the Omio search bar.
+3. **Custom Styling with CSS Modules & Custom Fonts**: In addition to Material UI, custom styling was implemented using CSS modules. To closely resemble the typography used on the Omio website, the GTWalsheimPro font was installed and applied to the project. This helps in achieving a consistent visual representation and enhances the similarity to the Omio search bar.
 
-4. Deployment: The code was deployed on a Digital Ocean web server and made accessible through the following URL: http://209.38.216.33:5555/. This allowed the search bar to be accessed and tested by users.
+4. **Deployment**: The code was deployed on a Digital Ocean web server and made accessible through the following [URL](http://209.38.216.33:5555/).
 
-5. Version Control: The code was hosted on GitHub and made publicly accessible. The repository can be found at https://github.com/jesuisstan/OmioSearchBar.
+5. **Version Control**: The code was hosted on GitHub and made publicly accessible. The repository can be found at https://github.com/jesuisstan/OmioSearchBar.
 
 ## Results
 
-The implemented search bar closely resembles the one found on Omio, providing autocomplete suggestions based on user input. The responsive design ensures a seamless experience across different devices. The deployment of the project on a web server allows users to access and interact with the search bar through the provided URL.
+The implemented search bar closely resembles the one found on Omio, providing autocomplete suggestions based on user input. The responsive design ensures a seamless experience across different devices. The deployment of the project on a web server allows users to access and interact with the search bar through the provided [URL](http://209.38.216.33:5555/).
+
+## Demonstration
+
 
 ## Future Improvements
 
 While the project has been successfully implemented and deployed, there are potential areas for improvement:
 
-- Error Handling: Error handling mechanisms can be implemented to gracefully handle scenarios such as API failures, network issues, and invalid user inputs. This would provide a more robust and reliable user experience.
+- **Error Handling**: Error handling mechanisms can be implemented to gracefully handle scenarios such as API failures, network issues, and invalid user inputs. This would provide a more robust and reliable user experience.
 
-- Unit Testing: Implementing unit tests for the components and functionality of the search bar would help ensure the stability and maintainability of the codebase, allowing for easier future modifications and bug fixes.
+- **Unit Testing**: Implementing unit tests for the components and functionality of the search bar would help ensure the stability and maintainability of the codebase, allowing for easier future modifications and bug fixes.
+
+- **Safari browser support** was not tested.
 
 By addressing these areas for improvement, the project can be further optimized and polished, providing an even better user experience similar to that of Omio.
