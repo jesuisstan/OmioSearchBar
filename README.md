@@ -58,6 +58,7 @@ While the project has been successfully implemented and deployed, there are pote
 By addressing these areas for improvement, the project can be further optimized and polished, providing an even better user experience similar to that of Omio.
 
 ## How to use
+#### A) With NPM:
 Firstly install all the dependencies according to 'package.json' file:
 ```sh
 npm install
@@ -77,6 +78,16 @@ npm run build
 1. Start 'Omio-Like Search Bar' App:
 ```sh
 npm start
+```
+
+#### B) With Docker:
+1. Build the Docker image:
+```sh
+docker build -t omio-like-search-bar-image .
+```
+2. Run the Docker container using the following command:
+```sh
+docker run -d -p 5555:5555 omio-like-search-bar-image
 ```
 
 Open [http://localhost:5555](http://localhost:5555) to view the App in browser.
