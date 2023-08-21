@@ -83,11 +83,11 @@ npm start
 #### B) With Docker:
 1. Build the Docker image:
 ```sh
-docker build -t omio-like-search-bar-image .
+docker build -t omio .
 ```
 2. Run the Docker container using the following command:
 ```sh
-docker run -d -p 5555:5555 omio-like-search-bar-image
+docker run -p 5555:5555 omio
 ```
 
 Open [http://localhost:5555](http://localhost:5555) to view the App in browser.
