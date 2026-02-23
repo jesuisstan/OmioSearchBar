@@ -13,8 +13,13 @@ RUN npm install
 # Copy the entire project directory to the container
 COPY . .
 
+# Build the application during image creation (not at runtime)
+# This reduces memory usage during container startup
+RUN npm run build
+
 # Expose the port that serve will use
 EXPOSE 5555
 
-# Start the React app in production mode (build + serve)
-CMD ["npm", "run", "start:prod"]
+# Start only the serve command (build is already done)
+# This uses minimal memory as it only serves static files
+CMD ["npm", "run", "serve"]

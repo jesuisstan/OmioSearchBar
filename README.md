@@ -124,8 +124,10 @@ The project is configured for deployment on Render.com using Docker.
 
 **Alternative: Using Dockerfile**
 
-If you prefer to use the Dockerfile:
-- Render.com will automatically detect and use the Dockerfile
-- The Dockerfile will build and serve the app automatically
+If Render.com automatically detects and uses the Dockerfile:
+- The Dockerfile is optimized to build during image creation (not at runtime)
+- This reduces memory usage during container startup
+- The build happens once when the image is created
+- Only the `serve` command runs at container startup (serves pre-built static files)
 - Make sure the port is set to `5555` in your Render.com service settings
-- Note: Dockerfile approach may use more memory as it builds and serves in one step
+- **Note**: If you want to use npm commands instead of Dockerfile, you can temporarily rename `Dockerfile` to `Dockerfile.bak` in your repository
