@@ -1,6 +1,6 @@
 {
   "name": "omio-like-search-bar",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -35,7 +35,9 @@
   },
   "scripts": {
     "start": "cross-env PORT=5555 react-scripts start",
-    "build": "react-scripts build && serve -s build -l 5555",
+    "build": "react-scripts build",
+    "serve": "serve -s build -l 5555",
+    "start:prod": "npm run build && npm run serve",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -59,6 +61,7 @@
   },
   "devDependencies": {
     "@types/react-date-range": "^1.4.4",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "serve": "^14.2.1"
   }
 }

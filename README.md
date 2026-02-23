@@ -1,6 +1,6 @@
 # Project Documentation: Omio-Like Search Bar
 
-The deployed project can be accessed at http://209.38.216.33:5555/. \
+The deployed project can be accessed at https://omio-like-search-bar.onrender.com \
 The source code with explanatory comments is available on GitHub [repository](https://github.com/jesuisstan/OmioSearchBar).
 
 ## Objective
@@ -31,13 +31,13 @@ Proper API calls were made to fetch the required data for autocomplete suggestio
 
 3. **Custom Styling with CSS Modules & Custom Fonts**: In addition to Material UI, custom styling was implemented using CSS modules. To closely resemble the typography used on the Omio website, the GTWalsheimPro font was installed and applied to the project. This helps in achieving a consistent visual representation and enhances the similarity to the Omio search bar.
 
-4. **Deployment**: The code was deployed on a Digital Ocean web server and made accessible through the [URL](http://209.38.216.33:5555/).
+4. **Deployment**: The code was deployed on Render.com and made accessible through the [URL](https://omio-like-search-bar.onrender.com).
 
 5. **Version Control**: The code was hosted on GitHub and made publicly accessible. The repository can be found at https://github.com/jesuisstan/OmioSearchBar.
 
 ## Results
 
-The implemented search bar closely resembles the one found on Omio, providing autocomplete suggestions based on user input. The responsive design ensures a seamless experience across different devices. The deployment of the project on a web server allows users to access and interact with the search bar through the provided [URL](http://209.38.216.33:5555/).
+The implemented search bar closely resembles the one found on Omio, providing autocomplete suggestions based on user input. The responsive design ensures a seamless experience across different devices. The deployment of the project on Render.com allows users to access and interact with the search bar through the provided [URL](https://omio-like-search-bar.onrender.com).
 
 ## Demonstration
 
@@ -58,25 +58,65 @@ While the project has been successfully implemented and deployed, there are pote
 By addressing these areas for improvement, the project can be further optimized and polished, providing an even better user experience similar to that of Omio.
 
 ## How to use
-Firstly install all the dependencies according to 'package.json' file:
+
+### Local Development
+
+1. Install all dependencies:
 ```sh
 npm install
 ```
-### To run the production build of the app:
-1. Install [serve](https://github.com/vercel/serve) and let it handle the rest:
-```sh
-npm install -g serve
-```
 
-2. Start 'Omio-Like Search Bar' App:
-```sh
-npm run build
-```
-
-### To run the app in the development mode:
-1. Start 'Omio-Like Search Bar' App:
+2. Start the app in development mode:
 ```sh
 npm start
 ```
 
-Open [http://localhost:5555](http://localhost:5555) to view the App in browser.
+3. Open [http://localhost:5555](http://localhost:5555) to view the app in your browser.
+
+### Local Production Build
+
+To test the production build locally:
+
+1. Build the app:
+```sh
+npm run build
+```
+
+2. Serve the production build:
+```sh
+npm run serve
+```
+
+Or use the combined command:
+```sh
+npm run start:prod
+```
+
+The app will be available at [http://localhost:5555](http://localhost:5555).
+
+### Deployment on Render.com
+
+The project is configured for deployment on Render.com using Docker.
+
+**Prerequisites:**
+- A Render.com account
+- GitHub repository connected to Render.com
+
+**Deployment Steps:**
+
+1. Create a new **Web Service** on Render.com
+2. Connect your GitHub repository
+3. Configure the service:
+   - **Build Command**: `npm install` (or leave empty if using Dockerfile)
+   - **Start Command**: `npm run start:prod` (or use Dockerfile)
+   - **Port**: `5555`
+   - **Environment**: `Node`
+
+**Alternative: Using Dockerfile**
+
+If you prefer to use the Dockerfile:
+- Render.com will automatically detect and use the Dockerfile
+- The Dockerfile will build and serve the app automatically
+- Make sure the port is set to `5555` in your Render.com service settings
+
+**Note:** The project includes production scripts (`build`, `serve`, `start:prod`) that are optimized for Render.com deployment. The `serve` package is included in `devDependencies` and will be installed automatically during the build process.
