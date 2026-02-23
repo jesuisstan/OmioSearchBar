@@ -19,8 +19,5 @@ COPY . .
 # Expose the port that serve will use (must match the port specified in your npm run build command)
 EXPOSE 5555
 
-## Use volumes to store node_modules and build folders outside the container
-#VOLUME ["/app/node_modules", "/app/build"]
-
 # Start the React app
 CMD ["npm", "run", "build"]
