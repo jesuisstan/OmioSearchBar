@@ -107,10 +107,20 @@ The project is configured for deployment on Render.com using Docker.
 1. Create a new **Web Service** on Render.com
 2. Connect your GitHub repository
 3. Configure the service:
-   - **Build Command**: `npm install` (or leave empty if using Dockerfile)
-   - **Start Command**: `npm run start:prod` (or use Dockerfile)
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm run serve`
    - **Port**: `5555`
    - **Environment**: `Node`
+
+4. **Add Environment Variables** (optional, for memory optimization):
+   - `NODE_OPTIONS`: `--max-old-space-size=512`
+
+**Important Notes:**
+
+- **Build Command** runs once during deployment and creates the production build
+- **Start Command** runs continuously and serves the pre-built static files
+- This approach separates build and serve, reducing memory usage during runtime
+- The `serve` package is included in `devDependencies` and will be installed during build
 
 **Alternative: Using Dockerfile**
 
@@ -118,5 +128,4 @@ If you prefer to use the Dockerfile:
 - Render.com will automatically detect and use the Dockerfile
 - The Dockerfile will build and serve the app automatically
 - Make sure the port is set to `5555` in your Render.com service settings
-
-**Note:** The project includes production scripts (`build`, `serve`, `start:prod`) that are optimized for Render.com deployment. The `serve` package is included in `devDependencies` and will be installed automatically during the build process.
+- Note: Dockerfile approach may use more memory as it builds and serves in one step
